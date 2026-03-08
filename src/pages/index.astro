@@ -1,0 +1,50 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+
+const allArticles = (await getCollection(
+  'articles'
+)) as CollectionEntry<'articles'>[];
+
+const latestArticles = allArticles
+  .filter((article) => !article.data.draft)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 3);
+---
+
+<Layout
+  title="Home"
+  description="A modern Astro starter with React, Tailwind, and Prettier">
+  <div class="container-fluid fl-py-5/25">
+    <div class="fl-mb-6/12">
+      <h1>Welcome to AstroWind</h1>
+      <p class="max-w-prose">
+        This is a modern Astro starter template featuring React, Tailwind CSS,
+        and Prettier for code formatting. It provides a solid foundation for
+        building fast and optimized websites with Astro.
+      </p>
+    </div>
+
+    <h2 class="type-h4">Latest Articles</h2>
+    <ul class="stack" role="list">
+      {
+        latestArticles.map((article) => (
+          <li>
+            <article>
+              <h3 class="type-h6">
+                <a href={`/articles/${article.slug}/`} class="underline">
+                  {article.data.title}
+                </a>
+              </h3>
+              <p class="text-base">{article.data.description}</p>
+            </article>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p>
+      <a href="/articles" class="underline">Browse all articles</a>
+    </p>
+  </div>
+</Layout>

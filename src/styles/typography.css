@@ -1,0 +1,16 @@
+@layer base {
+  /* Default: anything after a heading gets moderate spacing */
+  :where(h1, h2, h3, h4, h5, h6) + * {
+    @apply fl-mt-2/4;
+  }
+
+  /* Strong separation: body content before headings */
+  :where(p, ul, ol, blockquote) + :where(h1, h2, h3, h4, h5, h6) {
+    @apply fl-mt-8/12;
+  }
+
+  /* Standard flow: paragraph and list adjacency */
+  :where(p, ul, ol) + :where(p, ul, ol) {
+    @apply fl-mt-4/8;
+  }
+}

@@ -1,0 +1,41 @@
+---
+import type { Meta } from '@src/types/meta';
+import { SITE } from '@src/site';
+
+type Props = Meta;
+
+const {
+  title = SITE.title,
+  description = SITE.description,
+  ogTitle,
+  ogDescription,
+  ogImage,
+} = Astro.props;
+
+// Format full title: if custom title is provided and differs from site title, append site name
+const fullTitle =
+  title && title !== SITE.title ? `${title} - ${SITE.title}` : title;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!-- Essential Meta Tags -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" href="/favicon.ico" />
+
+<!-- Astro Generator -->
+<meta name="generator" content={Astro.generator} />
+
+<!-- Open Graph -->
+<meta property="og:title" content={ogTitle || fullTitle} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:description" content={ogDescription || description} />
+{ogImage && <meta property="og:image" content={ogImage} />}

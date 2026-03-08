@@ -1,0 +1,38 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+
+const allArticles = (await getCollection(
+  'articles'
+)) as CollectionEntry<'articles'>[];
+
+const articles = allArticles
+  .filter((article) => !article.data.draft)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<Layout title="Articles" description="Latest articles and notes.">
+  <section class="container-fluid fl-py-8/20">
+    <div class="stack">
+      <h1 class="type-h2">Articles</h1>
+      <p>Thoughts on Astro, frontend architecture, and performance.</p>
+
+      <ul class="stack" role="list">
+        {
+          articles.map((article) => (
+            <li>
+              <article>
+                <h2 class="type-h5">
+                  <a href={`/articles/${article.slug}/`} class="underline">
+                    {article.data.title}
+                  </a>
+                </h2>
+                <p>{article.data.description}</p>
+              </article>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Layout>

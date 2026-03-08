@@ -1,0 +1,9 @@
+@layer components {
+  .container {
+    @apply fl-px-5/20 mx-auto;
+  }
+
+  .container-fluid {
+    @apply max-w-11xl fl-px-5/20 mx-auto;
+  }
+}

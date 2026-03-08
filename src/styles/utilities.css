@@ -1,0 +1,59 @@
+/* Typography utility classes */
+@utility type-h1 {
+  @apply fl-text-5xl/7xl leading-none font-semibold;
+}
+
+@utility type-h2 {
+  @apply fl-text-3xl/6xl leading-tight font-semibold;
+}
+
+@utility type-h3 {
+  @apply fl-text-2xl/5xl leading-tight font-semibold;
+}
+
+@utility type-h4 {
+  @apply fl-text-xl/4xl leading-snug font-semibold;
+}
+
+@utility type-h5 {
+  @apply fl-text-lg/3xl leading-snug font-semibold;
+}
+
+@utility type-h6 {
+  @apply fl-text-base/2xl leading-snug font-semibold;
+}
+
+@utility font-size-base {
+  @apply fl-text-base/xl leading-normal;
+}
+
+@utility stack {
+  @apply [&>*+*]:fl-mt-4/8;
+}
+
+/* Apply typography utilities to HTML elements */
+@layer base {
+  h1 {
+    @apply type-h1;
+  }
+
+  h2 {
+    @apply type-h2;
+  }
+
+  h3 {
+    @apply type-h3;
+  }
+
+  h4 {
+    @apply type-h4;
+  }
+
+  h5 {
+    @apply type-h5;
+  }
+
+  h6 {
+    @apply type-h6;
+  }
+}

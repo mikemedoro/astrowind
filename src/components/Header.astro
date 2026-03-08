@@ -1,0 +1,17 @@
+---
+import MainNav from '@components/MainNav.astro';
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.svg';
+---
+
+<div class="site-header bg-white shadow-sm">
+  <div class="container-fluid fl-py-5/10">
+    <div class="fl-gap-5/10 flex flex-wrap items-center justify-between">
+      <a href="/" class="font-semibold text-black">
+        <Image src={logo} alt="Astro logo" />
+      </a>
+
+      <MainNav />
+    </div>
+  </div>
+</div>

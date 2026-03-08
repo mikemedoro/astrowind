@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+
+@plugin 'fluid-tailwindcss' {
+  minviewport: 400;
+  maxviewport: 2200;
+  userem: true;
+  rootfontsize: 16;
+  checkaccessibility: true;
+}
+
+@import './theme.css';
+@import './typography.css';
+@import './components.css';
+@import './utilities.css';

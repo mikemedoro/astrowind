@@ -1,0 +1,33 @@
+---
+import '@src/styles/main.css';
+import type { Meta } from '@src/types/meta';
+
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import Head from '@components/Head.astro';
+
+type Props = Meta;
+
+const meta = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <Head {...meta} />
+  </head>
+
+  <body class="site-body font-size-base leading-normal">
+    <a href="#main" class="sr-only">Skip to content</a>
+
+    <div id="site" class="site">
+      <Header />
+
+      <main id="main" class="page-content">
+        <slot>Sorry, no content</slot>
+      </main>
+
+      <Footer />
+    </div>
+  </body>
+</html>

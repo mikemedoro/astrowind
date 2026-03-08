@@ -1,0 +1,43 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const allArticles = (await getCollection(
+    'articles'
+  )) as CollectionEntry<'articles'>[];
+  const articles = allArticles.filter((article) => !article.data.draft);
+
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+type Props = {
+  article: CollectionEntry<'articles'>;
+};
+
+const { article } = Astro.props as Props;
+const { Content } = await article.render();
+const publishedDate = article.data.publishDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Layout title={article.data.title} description={article.data.description}>
+  <article class="container-fluid fl-py-8/20">
+    <div class="stack">
+      <p class="text-sm text-gray-600">Published {publishedDate}</p>
+      <h1>{article.data.title}</h1>
+      <p>{article.data.description}</p>
+      <hr class="border-gray-200" />
+      <Content />
+      <p>
+        <a href="/articles" class="underline">Back to all articles</a>
+      </p>
+    </div>
+  </article>
+</Layout>
