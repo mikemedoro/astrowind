@@ -1,7 +1,12 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const articles = defineCollection({
-  type: 'content',
+  loader: glob({
+    pattern: '**/*.{md,mdx}',
+    base: './src/content/articles',
+    generateId: ({ entry }) => entry.replace(/\.mdx?$/, ''),
+  }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
