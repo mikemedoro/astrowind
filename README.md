@@ -4,7 +4,7 @@ Astro starter focused on content-first pages with modern styling and a clean fil
 
 ## Stack
 
-- Astro 5
+- Astro 7
 - Tailwind CSS v4 via `@tailwindcss/vite`
 - `fluid-tailwindcss` for fluid type/spacing scales
 - React (for optional interactive islands)
