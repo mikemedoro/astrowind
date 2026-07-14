@@ -12,27 +12,38 @@ const articles = allArticles
 ---
 
 <Layout title="Articles" description="Latest articles and notes.">
-  <section class="container-fluid fl-py-8/20">
-    <div class="stack">
-      <h1 class="type-h2">Articles</h1>
-      <p>Thoughts on Astro, frontend architecture, and performance.</p>
-
-      <ul class="stack" role="list">
-        {
-          articles.map((article) => (
-            <li>
-              <article>
-                <h2 class="type-h5">
-                  <a href={`/articles/${article.id}/`} class="underline">
-                    {article.data.title}
-                  </a>
-                </h2>
-                <p>{article.data.description}</p>
-              </article>
-            </li>
-          ))
-        }
-      </ul>
+  <section class="container-fluid fl-py-10/20">
+    <div class="fl-mb-8/14 fl-pb-8/14 border-b border-slate-100">
+      <h1>Articles</h1>
+      <p class="fl-mt-4/6 text-slate-600">
+        Thoughts on Astro, frontend architecture, and performance.
+      </p>
     </div>
+
+    <ul role="list">
+      {
+        articles.map((article) => (
+          <li class="article-card">
+            <article>
+              <p class="article-meta fl-mb-2/4">
+                {article.data.publishDate.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </p>
+              <h2 class="type-h5 m-0">
+                <a
+                  href={`/articles/${article.id}/`}
+                  class="text-slate-900 no-underline transition-colors hover:text-slate-500">
+                  {article.data.title}
+                </a>
+              </h2>
+              <p class="fl-mt-2/4 text-slate-600">{article.data.description}</p>
+            </article>
+          </li>
+        ))
+      }
+    </ul>
   </section>
 </Layout>

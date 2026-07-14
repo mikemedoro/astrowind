@@ -31,6 +31,10 @@
   @apply [&>*+*]:fl-mt-4/8;
 }
 
+@utility eyebrow {
+  @apply text-xs font-semibold tracking-widest text-slate-500 uppercase;
+}
+
 /* Apply typography utilities to HTML elements */
 @layer base {
   h1 {

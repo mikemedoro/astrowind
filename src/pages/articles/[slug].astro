@@ -28,16 +28,21 @@ const publishedDate = article.data.publishDate.toLocaleDateString('en-US', {
 ---
 
 <Layout title={article.data.title} description={article.data.description}>
-  <article class="container-fluid fl-py-8/20">
-    <div class="stack">
-      <p class="text-sm text-gray-600">Published {publishedDate}</p>
+  <article class="container-fluid fl-py-10/20">
+    <header class="fl-mb-8/14 fl-pb-8/14 max-w-3xl border-b border-slate-100">
+      <p class="article-meta fl-mb-2/4">{publishedDate}</p>
       <h1>{article.data.title}</h1>
-      <p>{article.data.description}</p>
-      <hr class="border-gray-200" />
-      <Content />
-      <p>
-        <a href="/articles" class="underline">Back to all articles</a>
+      <p class="fl-mt-4/6 fl-text-lg/xl leading-relaxed text-slate-600">
+        {article.data.description}
       </p>
+    </header>
+
+    <div class="prose-content stack">
+      <Content />
     </div>
+
+    <p class="fl-mt-10/16 fl-pt-6/10 border-t border-slate-100">
+      <a href="/articles" class="link-arrow">&larr; Back to articles</a>
+    </p>
   </article>
 </Layout>

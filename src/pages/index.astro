@@ -15,36 +15,52 @@ const latestArticles = allArticles
 <Layout
   title="Home"
   description="A modern Astro starter with React, Tailwind, and Prettier">
-  <div class="container-fluid fl-py-5/25">
-    <div class="fl-mb-6/12">
+  <section class="container-fluid fl-py-14/28 border-b border-slate-100">
+    <div class="max-w-2xl">
       <h1>Welcome to AstroWind</h1>
-      <p class="max-w-prose">
-        This is a modern Astro starter template featuring React, Tailwind CSS,
-        and Prettier for code formatting. It provides a solid foundation for
-        building fast and optimized websites with Astro.
+      <p class="fl-mt-4/6 max-w-prose text-slate-600">
+        A modern Astro starter featuring React, Tailwind CSS v4, and Astro
+        content collections — a fast, minimal foundation for building great
+        websites.
       </p>
     </div>
+  </section>
 
-    <h2 class="type-h4">Latest Articles</h2>
-    <ul class="stack" role="list">
-      {
-        latestArticles.map((article) => (
-          <li>
-            <article>
-              <h3 class="type-h6">
-                <a href={`/articles/${article.id}/`} class="underline">
-                  {article.data.title}
-                </a>
-              </h3>
-              <p class="text-base">{article.data.description}</p>
-            </article>
-          </li>
-        ))
-      }
-    </ul>
+  <section class="container-fluid fl-py-10/20">
+    <p class="eyebrow">Latest Articles</p>
 
-    <p>
-      <a href="/articles" class="underline">Browse all articles</a>
+    <div>
+      <ul role="list">
+        {
+          latestArticles.map((article) => (
+            <li class="article-card">
+              <article>
+                <p class="article-meta fl-mb-2/4">
+                  {article.data.publishDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </p>
+                <h2 class="type-h5 m-0">
+                  <a
+                    href={`/articles/${article.id}/`}
+                    class="text-slate-900 no-underline transition-colors hover:text-slate-500">
+                    {article.data.title}
+                  </a>
+                </h2>
+                <p class="fl-mt-2/4 text-slate-600">
+                  {article.data.description}
+                </p>
+              </article>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <p class="fl-mt-6/10">
+      <a href="/articles" class="link-arrow">All articles &rarr;</a>
     </p>
-  </div>
+  </section>
 </Layout>

@@ -67,4 +67,8 @@
 
   /* Custom timing functions */
   --ease-smooth: cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* Brand accent */
+  --color-brand: oklch(44% 0.12 244);
+  --color-brand-dim: oklch(36% 0.12 244);
 }
