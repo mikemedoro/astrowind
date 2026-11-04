@@ -1,20 +1,26 @@
 ---
+import { SITE } from '@src/site';
+
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer border-t border-slate-100 bg-white">
   <div class="container-fluid fl-py-6/10">
-    <div
-      class="flex flex-wrap items-center justify-between gap-4 text-sm text-slate-500">
-      <span>&copy; {currentYear} AstroWind</span>
+    <div class="flex flex-wrap items-center justify-between gap-4 text-sm text-slate-500">
+      <span>
+        &copy; {currentYear} {SITE.title}
+      </span>
       <nav aria-label="Footer navigation">
         <ul class="flex gap-5">
           <li>
-            <a href="/" class="transition-colors hover:text-slate-900">Home</a>
+            <a href="/" class="transition-colors hover:text-slate-900">
+              Home
+            </a>
           </li>
           <li>
-            <a href="/articles" class="transition-colors hover:text-slate-900"
-              >Articles</a>
+            <a href="/articles/" class="transition-colors hover:text-slate-900">
+              Articles
+            </a>
           </li>
         </ul>
       </nav>

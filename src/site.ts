@@ -1,5 +1,7 @@
 export const SITE = {
-  title: 'Astro Starter',
-  description: 'Welcome to my new Astro site!',
-  url: 'https://example.com', // Should match astro.config.mjs site value
+  title: 'AstroWind',
+  description: 'A modern Astro starter with React, Tailwind, and Prettier',
+  // TODO: set the production domain. astro.config.mjs reads this as `site`,
+  // which drives canonical and Open Graph URLs.
+  url: 'https://example.com',
 } as const;

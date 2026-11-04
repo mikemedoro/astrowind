@@ -1,6 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '@layouts/Layout.astro';
+import { formatDate } from '@src/utils/date';
 
 const allArticles = (await getCollection(
   'articles'
@@ -31,36 +32,30 @@ const latestArticles = allArticles
 
     <div>
       <ul role="list">
-        {
-          latestArticles.map((article) => (
-            <li class="article-card">
-              <article>
-                <p class="article-meta fl-mb-2/4">
-                  {article.data.publishDate.toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
-                </p>
-                <h2 class="type-h5 m-0">
-                  <a
-                    href={`/articles/${article.id}/`}
-                    class="text-slate-900 no-underline transition-colors hover:text-slate-500">
-                    {article.data.title}
-                  </a>
-                </h2>
-                <p class="fl-mt-2/4 text-slate-600">
-                  {article.data.description}
-                </p>
-              </article>
-            </li>
-          ))
-        }
+        {latestArticles.map((article) => (
+          <li class="article-card">
+            <article>
+              <p class="article-meta fl-mb-2/4">
+                {formatDate(article.data.publishDate)}
+              </p>
+              <h2 class="type-h5 m-0">
+                <a
+                  href={`/articles/${article.id}/`}
+                  class="text-slate-900 no-underline transition-colors hover:text-slate-500">
+                  {article.data.title}
+                </a>
+              </h2>
+              <p class="fl-mt-2/4 text-slate-600">{article.data.description}</p>
+            </article>
+          </li>
+        ))}
       </ul>
     </div>
 
     <p class="fl-mt-6/10">
-      <a href="/articles" class="link-arrow">All articles &rarr;</a>
+      <a href="/articles/" class="link-arrow">
+        All articles &rarr;
+      </a>
     </p>
   </section>
 </Layout>

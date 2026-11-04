@@ -1,6 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Layout from '@layouts/Layout.astro';
+import { formatDate } from '@src/utils/date';
 
 export async function getStaticPaths() {
   const allArticles = (await getCollection(
@@ -20,29 +21,31 @@ type Props = {
 
 const { article } = Astro.props as Props;
 const { Content } = await render(article);
-const publishedDate = article.data.publishDate.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-});
+const publishedDate = formatDate(article.data.publishDate);
 ---
 
-<Layout title={article.data.title} description={article.data.description}>
+<Layout
+  title={article.data.title}
+  description={article.data.description}
+  ogType="article"
+  publishedTime={article.data.publishDate}>
   <article class="container-fluid fl-py-10/20">
     <header class="fl-mb-8/14 fl-pb-8/14 max-w-3xl border-b border-slate-100">
       <p class="article-meta fl-mb-2/4">{publishedDate}</p>
       <h1>{article.data.title}</h1>
-      <p class="fl-mt-4/6 fl-text-lg/xl leading-relaxed text-slate-600">
+      <p class="fl-mt-4/6 text-xl leading-relaxed text-slate-600">
         {article.data.description}
       </p>
     </header>
 
-    <div class="prose-content stack">
+    <div class="prose-content">
       <Content />
     </div>
 
     <p class="fl-mt-10/16 fl-pt-6/10 border-t border-slate-100">
-      <a href="/articles" class="link-arrow">&larr; Back to articles</a>
+      <a href="/articles/" class="link-arrow">
+        &larr; Back to articles
+      </a>
     </p>
   </article>
 </Layout>
