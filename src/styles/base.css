@@ -1,0 +1,45 @@
+@layer base {
+  /* Map heading elements to the type-h* utilities (defined in utilities.css) */
+  h1 {
+    @apply type-h1;
+  }
+
+  h2 {
+    @apply type-h2;
+  }
+
+  h3 {
+    @apply type-h3;
+  }
+
+  h4 {
+    @apply type-h4;
+  }
+
+  h5 {
+    @apply type-h5;
+  }
+
+  h6 {
+    @apply type-h6;
+  }
+
+  body {
+    color: var(--color-slate-800);
+  }
+
+  /* Default: anything after a heading gets moderate spacing */
+  :where(h1, h2, h3, h4, h5, h6) + * {
+    @apply fl-mt-2/4;
+  }
+
+  /* Strong separation: body content before headings */
+  :where(p, ul, ol, blockquote, pre) + :where(h1, h2, h3, h4, h5, h6) {
+    @apply fl-mt-8/12;
+  }
+
+  /* Standard flow: adjacent body content */
+  :where(p, ul, ol, blockquote, pre) + :where(p, ul, ol, blockquote, pre) {
+    @apply fl-mt-4/8;
+  }
+}

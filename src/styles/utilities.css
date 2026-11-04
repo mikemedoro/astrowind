@@ -1,63 +1,45 @@
-/* Typography utility classes */
+/* Overrides Tailwind's built-in `container`.
+ *
+ * `@utility` merges these declarations into the built-in `.container` rule and
+ * places them last, so they beat its per-breakpoint max-widths at every size.
+ */
+@utility container {
+  @apply mx-auto max-w-7xl px-gutter;
+}
+
+/* Full-bleed layout wrapper, capped at the widest container size. */
+@utility container-fluid {
+  @apply mx-auto max-w-11xl px-gutter;
+}
+
 @utility type-h1 {
-  @apply fl-text-5xl/7xl leading-none font-semibold;
+  @apply font-sans text-h1 font-normal tracking-tight;
 }
 
 @utility type-h2 {
-  @apply fl-text-3xl/6xl leading-tight font-semibold;
+  @apply font-sans text-h2 font-normal tracking-tight;
 }
 
 @utility type-h3 {
-  @apply fl-text-2xl/5xl leading-tight font-semibold;
+  @apply font-sans text-h3 font-normal tracking-tight;
 }
 
 @utility type-h4 {
-  @apply fl-text-xl/4xl leading-snug font-semibold;
+  @apply font-sans text-h4 font-normal tracking-tight;
 }
 
 @utility type-h5 {
-  @apply fl-text-lg/3xl leading-snug font-semibold;
+  @apply font-sans text-h5 font-normal tracking-tight;
 }
 
 @utility type-h6 {
-  @apply fl-text-base/2xl leading-snug font-semibold;
-}
-
-@utility font-size-base {
-  @apply fl-text-base/xl leading-normal;
-}
-
-@utility stack {
-  @apply [&>*+*]:fl-mt-4/8;
+  @apply font-sans text-h6 font-normal tracking-tight;
 }
 
 @utility eyebrow {
   @apply text-xs font-semibold tracking-widest text-slate-500 uppercase;
 }
 
-/* Apply typography utilities to HTML elements */
-@layer base {
-  h1 {
-    @apply type-h1;
-  }
-
-  h2 {
-    @apply type-h2;
-  }
-
-  h3 {
-    @apply type-h3;
-  }
-
-  h4 {
-    @apply type-h4;
-  }
-
-  h5 {
-    @apply type-h5;
-  }
-
-  h6 {
-    @apply type-h6;
-  }
+@utility stack {
+  @apply [&>*+*]:fl-mt-4/8;
 }

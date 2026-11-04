@@ -1,18 +1,10 @@
 @layer components {
-  .container {
-    @apply fl-px-5/20 mx-auto;
-  }
-
-  .container-fluid {
-    @apply max-w-11xl fl-px-5/20 mx-auto;
-  }
-
   .page-content {
     @apply min-h-[60vh];
   }
 
   .article-card {
-    @apply fl-py-6/10 border-b border-slate-200 last:border-b-0;
+    @apply border-b border-slate-200 fl-py-6/10 last:border-b-0;
   }
 
   .article-meta {

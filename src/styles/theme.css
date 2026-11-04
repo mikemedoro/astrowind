@@ -1,3 +1,44 @@
+/* Fluid tokens. Each `min/max` pair compiles to a clamp() interpolated between
+   the viewport bounds below, emitted to :root under the `--fluid-` namespace.
+   Recognized prefixes also extend the matching theme scale, so `--text-h1`
+   yields `text-h1` and `--spacing-gutter` yields `p-gutter`, `gap-gutter`, etc.
+*/
+@plugin 'fluid-tailwindcss' {
+  minviewport: 400;
+  maxviewport: 2200;
+  userem: true;
+  rootfontsize: 16;
+  checkaccessibility: true;
+
+  --text-h1: 36px/72px;
+  --text-h2: 32px/60px;
+  --text-h3: 29px/50px;
+  --text-h4: 26px/41px;
+  --text-h5: 23px/35px;
+  --text-h6: 20px/29px;
+
+  --text-3xl: 24px/35px;
+  --text-2xl: 20px/29px;
+  --text-xl: 18px/24px;
+  --text-lg: 16px/20px;
+  --text-base: 14px/17px;
+  --text-sm: 13px/15px;
+  --text-xs: 12px/14px;
+
+  /* Spacing */
+  --spacing-gutter-sm: 10px/20px;
+  --spacing-gutter: 20px/80px;
+  --spacing-gutter-md: 30px/50px;
+  --spacing-gutter-lg: 40px/80px;
+  --spacing-gutter-xl: 80px/160px;
+
+  --spacing-block-xs: 5px/10px;
+  --spacing-block-sm: 10px/20px;
+  --spacing-block: 20px/40px;
+  --spacing-block-md: 40px/80px;
+  --spacing-block-lg: 60px/120px;
+}
+
 @theme {
   /* Colors */
   --color-*: initial;
@@ -52,23 +93,57 @@
   --color-neutral-900: oklch(20.5% 0 0);
   --color-neutral-950: oklch(14.5% 0 0);
 
+  /* Brand accent */
+  --color-brand: oklch(44% 0.12 244);
+  --color-brand-dim: oklch(36% 0.12 244);
+
   /* Font families */
   --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-serif: Georgia, 'Times New Roman', Times, serif;
 
-  /* Line heights */
-  --leading-none: 1;
+  /* Type scale: fluid only. Reset Tailwind's static sizes so every `text-*`
+     class resolves to a fluid token from the @plugin block above, and the
+     static steps (text-4xl through text-9xl) no longer exist. Two escape
+     hatches remain: arbitrary values (`text-[20px]`) and `fl-text-*` pairs
+     outside this scale (`fl-text-4xl/6xl` falls back to Tailwind's defaults).
+     Avoid both; use the tokens.
 
-  /* Extended max-widths */
-  --max-width-8xl: 86rem;
-  --max-width-9xl: 100rem;
-  --max-width-10xl: 120rem;
-  --max-width-11xl: 137.5rem;
+     The reset also drops the default line-heights, so each step declares one
+     here. Unitless ratios multiply the clamp()'d font-size, so leading stays
+     proportional at every viewport. Tighter as the type gets larger. */
+  --text-*: initial;
+
+  --text-h1--line-height: 1.05;
+  --text-h2--line-height: 1.1;
+  --text-h3--line-height: 1.15;
+  --text-h4--line-height: 1.2;
+  --text-h5--line-height: 1.25;
+  --text-h6--line-height: 1.3;
+
+  --text-3xl--line-height: 1.25;
+  --text-2xl--line-height: 1.3;
+  --text-xl--line-height: 1.4;
+  --text-lg--line-height: 1.5;
+  --text-base--line-height: 1.5;
+  --text-sm--line-height: 1.45;
+  --text-xs--line-height: 1.4;
+
+  /* Extended max-widths (v4 reads max-w-* from the --container-* namespace) */
+  --container-8xl: 86rem;
+  --container-9xl: 100rem;
+  --container-10xl: 120rem;
+  --container-11xl: 137.5rem;
 
   /* Custom timing functions */
   --ease-smooth: cubic-bezier(0.77, 0, 0.175, 1);
-
-  /* Brand accent */
-  --color-brand: oklch(44% 0.12 244);
-  --color-brand-dim: oklch(36% 0.12 244);
+  --ease-in-quad: cubic-bezier(0.11, 0, 0.5, 0);
+  --ease-out-quad: cubic-bezier(0.5, 1, 0.89, 1);
+  --ease-in-out-quad: cubic-bezier(0.45, 0, 0.55, 1);
+  --ease-in-quint: cubic-bezier(0.64, 0, 0.78, 0);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+  --ease-in-expo: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
 }

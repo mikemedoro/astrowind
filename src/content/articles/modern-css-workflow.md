@@ -11,11 +11,11 @@ A maintainable CSS strategy starts with clear separation of concerns. This proje
 
 **`theme.css`** defines design tokens as CSS custom properties inside Tailwind's `@theme` block. Colors, font stacks, spacing scales, and easing functions all live here. Because they're CSS custom properties, they're available everywhere — in Tailwind utilities, in vanilla CSS, and at runtime via JavaScript if needed.
 
-**`typography.css`** handles base element styles and type scale utilities. Heading sizes are defined as `@utility` classes like `type-h1` through `type-h6`, which use fluid text sizes that scale between a minimum and maximum based on viewport width. Base element defaults (body color, link offsets) live in `@layer base`.
+**`base.css`** holds element defaults in `@layer base`: body color, heading styles, and vertical rhythm between headings, paragraphs, and lists.
 
-**`components.css`** contains higher-level patterns: the `.container-fluid` layout class, `.article-card`, `.prose-content`, and similar reusable structures. These are things that appear repeatedly with the same shape, where a utility class alone would require too much repetition at the call site.
+**`components.css`** contains higher-level patterns: `.article-card`, `.prose-content`, and similar reusable structures. These are things that appear repeatedly with the same shape, where a utility class alone would require too much repetition at the call site.
 
-**`utilities.css`** holds single-purpose composable classes like `.stack` and `.eyebrow`. These are concepts that Tailwind doesn't have built-in names for but that you want to reuse semantically rather than as a string of utility classes.
+**`utilities.css`** holds single-purpose composable classes like `.container-fluid`, `.stack`, `.eyebrow`, and the `type-h1` through `type-h6` heading styles, which use fluid text sizes that scale between a minimum and maximum based on viewport width. These are concepts that Tailwind doesn't have built-in names for but that you want to reuse semantically rather than as a string of utility classes.
 
 ## CSS Cascade Layers
 
