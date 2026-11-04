@@ -9,6 +9,7 @@
     "prettier-plugin-multiline-arrays",
     "prettier-plugin-tailwindcss"
   ],
+  "tailwindStylesheet": "./src/styles/main.css",
   "overrides": [
     {
       "files": "*.astro",
